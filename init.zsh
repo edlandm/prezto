@@ -96,6 +96,19 @@ if [[ -s "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc" ]]; then
   source "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc"
 fi
 
+if [[ "$HOST" == 'shutupmiles' ]]; then
+    h="laptop"
+else
+    h="$HOST"
+fi
+
+# Source all files for the correct host
+runcoms=$ZSH/runcoms
+for f in `ls -1 $runcoms \
+    | grep -Ee "^z\w*$" -e "^z\w*\.$h$" | grep -v -e 'login' -e 'logout'`; do
+    source $runcoms/$f
+done
+
 # Disable color and theme in dumb terminals.
 if [[ "$TERM" == 'dumb' ]]; then
   zstyle ':prezto:*:*' color 'no'
