@@ -169,6 +169,7 @@ alias grm='git rm'
 alias gc='git commit'
 alias gca='git commit --amend'
 alias gch='git checkout'
+alias gcl='git clone'
 alias gurl='git url | head -n2 | tail -n1'
 
 # used like: `gcm my fancy commit message`
