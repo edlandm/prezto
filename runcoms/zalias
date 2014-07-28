@@ -1,0 +1,226 @@
+# vim:fdm=marker
+# vim:ft=zsh
+# ZSH Aliases -- Miles Edland ======================================================
+#===============================================================================
+# SSH Aliases =================================================================={{{
+#===============================================================================
+alias sdev='ssh edlandm@dev.housing.wwu.edu'
+alias sgravel='ssh edlandm@gravelpit.housing.wwu.edu'
+alias snari='ssh edlandm@nari.housing.wwu.edu'
+alias sjuice='ssh edlandm@juicebox.restek.wwu.edu'
+#===============================================================================}}}
+# General Aliases =============================================================={{{
+#===============================================================================
+# Edit .zshrc
+alias zrc='vim ~/.zshrc'
+# Re-Source .zshrc
+alias zrcr='source ~/.zshrc'
+#Edit .vimrc
+alias vrc='vim ~/.vimrc'
+#Restart Apache
+alias sag='sudo apachectl graceful'
+# Executes python file (with python)
+alias p]='python'
+# More dots
+alias -g ..=' cd ../'
+alias -g ...=' cd ../../'
+alias -g ....=' cd ../../../'
+# slightly more readable df
+alias df='df -h'
+# grep and keep colors
+alias cgrep='grep --color=auto'
+# quit and write quite
+alias :q='exit'
+alias :wq='exit'
+# List broken symlinks
+alias broken='find . -type l ! -exec test -e {} \; -print'
+# Makes zsh so that it can be used as such: `mmv *.jpeg *.jpg
+alias mmv='noglob zmv -W'
+# Counts lines
+alias wcl='wc -l'
+# Return status code of an http request
+alias httpstat='curl -sL -w "%{http_code} %{url_effective}\\n" -o /dev/null'
+# Clear screen
+alias c=' clear'
+
+alias cd=' cd'
+# Use to look up zsh documentation
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+# Join array
+# join / var local tmp ## var/local/tmp
+join() { local IFS="$1"; shift; echo "$*"; }
+# grep processes; I like this better than pgrep
+function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+# find by filename
+function fname() { find . -iname "*$@*"; }
+# make a directory and cd into it
+function mcd() { mkdir $1 && cd $1; }
+# removes lines from $1 if they appear in $2
+function remove_lines_from() { grep -F -x -v -f $2 $1; }
+
+alias c=' clear'
+
+alias cd=' cd'
+# Use to look up zsh documentation
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+#===============================================================================}}}
+# ls Aliases ==================================================================={{{
+#===============================================================================
+# Because I'm really THAT lazy
+alias l=' ls -l'
+# ls vertically
+alias -g lsv=' ls -1'
+# ls long format
+alias -g lsl=' ls -lh'
+# list all
+alias -g lsa=' ls -a'
+alias -g lsla=' ls -lha' # l for long format
+alias -g lsva=' ls -1a' # v for vertical
+# list hidden
+alias -g lsh=' ls -d .*'
+alias -g lslh=' ls -lhd .*' # l for long format
+alias -g lsvh=' ls -1d .*' # v for vertical
+# list files # only files, not symlinks or anything else
+alias -g lsf=' ls *(N.)'
+alias -g lslf=' ls -lh *(N.)' # l for long format
+alias -g lsvf=' ls -1 *(N.)' # v for vertical
+# list hidden files
+alias -g lshf=' ls .*(N.)'
+alias -g lslhf=' ls -lh .*(N.)' # l for long format
+alias -g lsvhf=' ls -1 .*(N.)' # v for vertical
+# list all files
+alias -g lsaf=' ls *(ND.)'
+alias -g lslaf=' ls -lh *(ND.)' # l for long format
+alias -g lsvaf=' ls -1 *(ND.)' # v for vertical
+# list directories
+alias -g lsd=' ls -d *(N/)'
+alias -g lsld=' ls -lhd *(N/)' # l for long format
+alias -g lsvd=' ls -1d *(N/)' # v for vertical
+# list hidden directories
+alias -g lshd=' ls -d .*(N/)'
+alias -g lslhd=' ls -lhd .*(N/)' # l for long format
+alias -g lsvhd=' ls -1d .*(N/)' # v for vertical
+# list all directories
+alias -g lsad=' ls -d *(ND/)'
+alias -g lslad=' ls -lhd *(ND/)' # l for long format
+alias -g lsvad=' ls -1d *(ND/)' # v for vertical
+# list empty directories
+alias -g lsed='  ls -d *(N/^F)'
+alias -g lsled=' ls -d *(N/^F)' # l for long format
+alias -g lsved=' ls -d *(N/^F)' # v for vertical
+# list hidden empty directories
+alias -g lshed=' ls -d .*(N/^F)'
+alias -g lslhed=' ls -d .*(N/^F)' # l for long format
+alias -g lsvhed=' ls -d .*(N/^F)' # v for vertical
+# list all empty directories
+alias -g lsaed=' ls -d *(ND/^F)'
+alias -g lslaed=' ls -d *(ND/^F)' # l for long format
+alias -g lsvaed=' ls -d *(ND/^F)' # v for vertical
+# list recursively empty directories
+alias -g lsred=' ls -d **/*(N/^F)'
+alias -g lslred=' ls -d **/*(N/^F)' # l for long format
+alias -g lsvred=' ls -d **/*(N/^F)' # v for vertical
+# list recursively hidden empty directories
+alias -g lshred=' ls -d .**/*(N/^F)'
+alias -g lslhred=' ls -d .**/*(N/^F)' # l for long format
+alias -g lsvhred=' ls -d .**/*(N/^F)' # v for vertical
+# list recursively all empty directories
+alias -g lsared=' ls -d **/*(ND/^F)'
+alias -g lslared=' ls -d **/*(ND/^F)' # l for long format
+alias -g lsvared=' ls -d **/*(ND/^F)' # v for vertical
+# list SymLinks
+alias -g lssl=' ls -d *(N@)'
+alias -g lslsl=' ls -lhd *(N@)' # l for long format
+alias -g lsvsl=' ls -1d *(N@)' # v for vertical
+# list hidden SymLinks
+alias -g lshsl=' ls -d .*(N@)'
+alias -g lslhsl=' ls -lhd .*(N@)' # l for long format
+alias -g lsvhsl=' ls -1d .*(N@)' # v for vertical
+# list all SymLinks
+alias -g lsasl=' ls -d *(ND@)'
+alias -g lslasl=' ls -lhd *(ND@)' # l for long format
+alias -g lsvasl=' ls -1d *(ND@)' # v for vertical
+#===============================================================================}}}
+# du Aliases ==================================================================={{{
+#===============================================================================
+# show sorted directory sizes for directories
+alias dus='du -s *(/) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done' # s for 'sort'
+# show sorted directory sizes for hidden directories
+alias dush='du -s .*(/) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done' # s for 'sort'
+# show sorted directory sizes for all directories
+alias dusa='du -s *(D/) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done' # s for 'sort'
+#===============================================================================}}}
+# git Aliases =================================================================={{{
+#===============================================================================
+alias gl='git pull'
+alias gp='git push'
+alias gls='git ls'
+alias gd=' git diff'
+alias gs=' git st'
+alias ga='git add'
+alias gst='git stash'
+alias gsp='git stash pop'
+alias gg='git gr'
+alias grm='git rm'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gch='git checkout'
+alias gurl='git url | head -n2 | tail -n1'
+
+# used like: `gcm my fancy commit message`
+# NOTE: certain characters (like parenthesis) must be escaped
+if [[ `which gcm > /dev/null; echo $?` == 0 ]]; then
+    unalias gcm
+fi
+    gcm() { git commit -m "`join   $@`"; }
+# Undo last commit
+gu() { git reset --soft HEAD~1; }
+#===============================================================================}}}
+# todo.txt aliases ============================================================={{{
+#===============================================================================
+alias ta='todo.sh add'
+alias tam='todo.sh addm'
+alias td='todo.sh do'
+alias tdl='todo.sh -f del'
+alias tg='todo.sh ls @Groceries'
+alias tp='todo.sh pri'
+alias tls='todo.sh ls'
+alias tlc='todo.sh listcon'
+alias tlp='todo.sh listpri'
+#===============================================================================}}}
+tga() { todo.sh add "@Groceries $*" }
+# Dictionary functions ========================================================={{{
+#===============================================================================
+# Dictionnary of computing (foldoc)
+doc() { local url="dict://dict.org/d:"$1":foldoc";curl $url; }
+# English
+dicte() { local url="dict://dict.org/d:"$1":english";curl $url; }
+# English to French
+dictef() { local url="dict://dict.org/d:"$1":eng-fra";curl $url; }
+# English to Latin
+dictel() { local url="dict://dict.org/d:"$1":eng-lat";curl $url; }
+# French to English
+dictfe() { local url="dict://dict.org/d:"$1":fra-eng";curl $url; }
+# Latin to English
+dictle() { local url="dict://dict.org/d:"$1":lat-eng";curl $url; }
+# Zip codes
+dictzip() { local url="dict://dict.org/d:"$1":gaz2k-zips";curl $url; }
+# Places
+dictplace() { local url="dict://dict.org/d:"$1":gaz2k-places";curl $url; }
+# Counties
+dictcounty() { local url="dict://dict.org/d:"$1":gaz2k-counties";curl $url; }
+#===============================================================================}}}
+# Suffixes ====================================================================={{{
+#===============================================================================
+alias -s py="python"
+alias -s txt="vim"
+alias -s css="vim"
+alias -s aspx="vim"
+alias -s asmx="vim"
+alias -s convig="vim"
+alias -s master="vim"
+#===============================================================================}}}
