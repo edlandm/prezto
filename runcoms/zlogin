@@ -14,9 +14,9 @@
   fi
 } &!
 
-# Print a random, hopefully interesting, adage.
-if (( $+commands[fortune] )); then
-  fortune -a
-  print
-fi
-
+WIDTH=`tput cols`
+line="•"
+for c in $(seq 2 $((WIDTH/2))); do
+    line="$line •"
+done
+echo $line
