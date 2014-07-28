@@ -30,8 +30,11 @@ function pmodload {
   # $argv is overridden in the anonymous function.
   pmodules=("$argv[@]")
 
+  # ZHOME
+  ZHOME=$HOME/.zsh
+
   # Add functions to $fpath.
-  fpath=(${pmodules:+${ZDOTDIR:-$HOME}/.zprezto/modules/${^pmodules}/functions(/FN)} $fpath)
+  fpath=(${pmodules:+${ZDOTDIR:-$ZHOME}/modules/${^pmodules}/functions(/FN)} $fpath)
 
   function {
     local pfunction
@@ -40,7 +43,7 @@ function pmodload {
     setopt LOCAL_OPTIONS EXTENDED_GLOB
 
     # Load Prezto functions.
-    for pfunction in ${ZDOTDIR:-$HOME}/.zprezto/modules/${^pmodules}/functions/$~pfunction_glob; do
+    for pfunction in ${ZDOTDIR:-$ZHOME}/modules/${^pmodules}/functions/$~pfunction_glob; do
       autoload -Uz "$pfunction"
     done
   }
@@ -49,19 +52,19 @@ function pmodload {
   for pmodule in "$pmodules[@]"; do
     if zstyle -t ":prezto:module:$pmodule" loaded 'yes' 'no'; then
       continue
-    elif [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto/modules/$pmodule" ]]; then
+    elif [[ ! -d "${ZDOTDIR:-$ZHOME}/modules/$pmodule" ]]; then
       print "$0: no such module: $pmodule" >&2
       continue
     else
-      if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/modules/$pmodule/init.zsh" ]]; then
-        source "${ZDOTDIR:-$HOME}/.zprezto/modules/$pmodule/init.zsh"
+      if [[ -s "${ZDOTDIR:-$ZHOME}/modules/$pmodule/init.zsh" ]]; then
+        source "${ZDOTDIR:-$ZHOME}/modules/$pmodule/init.zsh"
       fi
 
       if (( $? == 0 )); then
         zstyle ":prezto:module:$pmodule" loaded 'yes'
       else
         # Remove the $fpath entry.
-        fpath[(r)${ZDOTDIR:-$HOME}/.zprezto/modules/${pmodule}/functions]=()
+        fpath[(r)${ZDOTDIR:-$ZHOME}/modules/${pmodule}/functions]=()
 
         function {
           local pfunction
@@ -71,7 +74,7 @@ function pmodload {
           setopt LOCAL_OPTIONS EXTENDED_GLOB
 
           # Unload Prezto functions.
-          for pfunction in ${ZDOTDIR:-$HOME}/.zprezto/modules/$pmodule/functions/$~pfunction_glob; do
+          for pfunction in ${ZDOTDIR:-$ZHOME}/modules/$pmodule/functions/$~pfunction_glob; do
             unfunction "$pfunction"
           done
         }
@@ -86,14 +89,12 @@ function pmodload {
 # Prezto Initialization
 #
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.zprezto
 # Path for zsh files (mostly ones that get sourced
 ZHOME=$HOME/.zsh
 
 # Source the Prezto configuration file.
-if [[ -s "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc" ]]; then
-  source "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc"
+if [[ -s "${ZDOTDIR:-$ZHOME}/runcoms/zpreztorc" ]]; then
+  source "${ZDOTDIR:-$ZHOME}/runcoms/zpreztorc"
 fi
 
 if [[ "$HOST" == 'shutupmiles' ]]; then
@@ -103,7 +104,7 @@ else
 fi
 
 # Source all files for the correct host
-runcoms=$ZSH/runcoms
+runcoms=$ZHOME/runcoms
 for f in `ls -1 $runcoms \
     | grep -Ee "^z\w*$" -e "^z\w*\.$h$" | grep -v -e 'login' -e 'logout'`; do
     source $runcoms/$f
