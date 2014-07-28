@@ -176,7 +176,7 @@ alias gurl='git url | head -n2 | tail -n1'
 if [[ `which gcm > /dev/null; echo $?` == 0 ]]; then
     unalias gcm
 fi
-    gcm() { git commit -m "`join   $@`"; }
+    gcm() { git commit -m "`join ' ' $@`"; }
 # Undo last commit
 gu() { git reset --soft HEAD~1; }
 #===============================================================================}}}
