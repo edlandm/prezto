@@ -1,0 +1,7 @@
+# LOCAL ZSHRC: shutupmiles -- Miles Edland =====================================
+#===============================================================================
+export PATH=/usr/texbin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
+export HOST=shutupmiles
+
+export HOMEBREW_GITHUB_API_TOKEN=61b5244e6fa04d168dbc71a4f70921bae8fd8741

@@ -1,0 +1,53 @@
+# LOCAL ZSHRC: nari -- Miles Edland ============================================
+#===============================================================================
+# Enable workon
+. /etc/bash_completion.d/virtualenvwrapper
+
+# Like curl but holds beaker session id for CAS authentication
+function rnget { 
+    if [[ $@ == *nari* ]]; then
+        SESSIONID_FILE=$HOME/cookies/resnet.dev.beaker_session
+    else
+        SESSIONID_FILE=$HOME/cookies/resnet.live.beaker_session
+    fi
+    if [ -e $SESSIONID_FILE ]; then
+        sid=$(<$SESSIONID_FILE)
+    else 
+        echo "No session ID found. Enter it manually or type \"q\" to exit"
+        read sid
+        if [ "$sid"=="q" ];then
+            exit
+        else
+            echo $sid > $SESSIONID_FILE
+        fi
+    fi
+    if [ -n $sid ]; then
+        curl --cookie "beaker.session.id"="$sid" $@
+    else
+        echo "No cookie set"
+    fi
+}
+
+function rnpost {
+    if [[ $@ == *nari* ]]; then
+        SESSIONID_FILE=$HOME/cookies/resnet.dev.beaker_session
+    else
+        SESSIONID_FILE=$HOME/cookies/resnet.live.beaker_session
+    fi
+    if [ -e $SESSIONID_FILE ]; then
+        sid=$(<$SESSIONID_FILE)
+    else 
+        echo "No session ID found. Enter it manually or type \"q\" to exit"
+        read sid
+        if [ "$sid"=="q" ];then
+            exit
+        else
+            echo $sid > $SESSIONID_FILE
+        fi
+    fi
+    if [ -n $sid ]; then
+        curl --cookie "beaker.session.id"="$sid" -X POST $@
+    else
+        echo "No cookie set"
+    fi
+}
