@@ -86,9 +86,14 @@ function pmodload {
 # Prezto Initialization
 #
 
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.zprezto
+# Path for zsh files (mostly ones that get sourced
+ZHOME=$HOME/.zsh
+
 # Source the Prezto configuration file.
-if [[ -s "${ZDOTDIR:-$HOME}/.zpreztorc" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zpreztorc"
+if [[ -s "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc" ]]; then
+  source "${ZDOTDIR:-$ZSH}/runcoms/zpreztorc"
 fi
 
 # Disable color and theme in dumb terminals.
