@@ -11,13 +11,19 @@ alias sjuice='ssh edlandm@juicebox.restek.wwu.edu'
 #===============================================================================}}}
 # General Aliases =============================================================={{{
 #===============================================================================
+# vim
+alias v='vim'
 # Edit .zshrc
 alias zrc='vim ~/.zshrc'
 # Re-Source .zshrc
 alias zrcr='source ~/.zshrc'
-#Edit .vimrc
+# Edit.alias file
+alias zrca='vim ~/.zsh/runcoms/zalias'
+# Edit .vimrc
 alias vrc='vim ~/.vimrc'
-#Restart Apache
+# Edit vim mappings
+alias vrcm='vim ~/.vim/conf/mappings.vim'
+# Restart Apache
 alias sag='sudo apachectl graceful'
 # Executes python file (with python)
 alias p]='python'
