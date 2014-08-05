@@ -65,6 +65,8 @@ function fname() { find . -iname "*$@*"; }
 function mcd() { mkdir $1 && cd $1; }
 # removes lines from $1 if they appear in $2
 function remove_lines_from() { grep -F -x -v -f $2 $1; }
+# 10 biggest files/dirs in wd
+alias ducks='du -cks * | sort -rn | head'
 
 alias c=' clear'
 
