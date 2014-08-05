@@ -5,3 +5,6 @@ alias gifs='mv ~/Downloads/*.gif ~/Downloads/gifs'
 
 # todo.txt aliases
 alias -g t='todo.sh'
+
+# Dash
+dash() { open dash://`join ' ' $@` }
