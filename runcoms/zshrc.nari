@@ -4,7 +4,8 @@
 . /etc/bash_completion.d/virtualenvwrapper
 
 # Like curl but holds beaker session id for CAS authentication
-function rnget { 
+# usage: rnget url
+function rnget {
     if [[ $@ == *nari* ]]; then
         SESSIONID_FILE=$HOME/cookies/resnet.dev.beaker_session
     else
@@ -12,7 +13,7 @@ function rnget {
     fi
     if [ -e $SESSIONID_FILE ]; then
         sid=$(<$SESSIONID_FILE)
-    else 
+    else
         echo "No session ID found. Enter it manually or type \"q\" to exit"
         read sid
         if [ "$sid"=="q" ];then
@@ -28,6 +29,7 @@ function rnget {
     fi
 }
 
+# usage: rnpost [-d DATA] url
 function rnpost {
     if [[ $@ == *nari* ]]; then
         SESSIONID_FILE=$HOME/cookies/resnet.dev.beaker_session
@@ -36,7 +38,7 @@ function rnpost {
     fi
     if [ -e $SESSIONID_FILE ]; then
         sid=$(<$SESSIONID_FILE)
-    else 
+    else
         echo "No session ID found. Enter it manually or type \"q\" to exit"
         read sid
         if [ "$sid"=="q" ];then
@@ -46,7 +48,7 @@ function rnpost {
         fi
     fi
     if [ -n $sid ]; then
-        curl --cookie "beaker.session.id"="$sid" -X POST $@
+        curl --cookie "beaker.session.id"="$sid" -X POST -H 'Content-Type: application/json' $@
     else
         echo "No cookie set"
     fi
