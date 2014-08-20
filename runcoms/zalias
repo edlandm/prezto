@@ -48,6 +48,10 @@ alias wcl='wc -l'
 alias httpstat='curl -sL -w "%{http_code} %{url_effective}\\n" -o /dev/null'
 # Clear screen
 alias c=' clear'
+# tree
+alias t=' tree'
+# w3m -- yes I'm that lazy, this mapping makes more sense using dvorak
+alias wm='w3m'
 
 alias cd=' cd'
 # Use to look up zsh documentation
