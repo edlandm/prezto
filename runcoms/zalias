@@ -196,17 +196,17 @@ gclg() { git clone "https://github.com/$1"}
 #===============================================================================}}}
 # todo.txt aliases ============================================================={{{
 #===============================================================================
-alias ta='todo.sh add'
-alias tam='todo.sh addm'
-alias td='todo.sh do'
-alias tdl='todo.sh -f del'
-alias tg='todo.sh ls @Groceries'
-alias tp='todo.sh pri'
-alias tls='todo.sh ls'
-alias tlc='todo.sh listcon'
-alias tlp='todo.sh listpri'
+alias tda='todo.sh add'
+alias tdam='todo.sh addm'
+alias tdd='todo.sh do'
+alias tddl='todo.sh -f del'
+alias tdg='todo.sh ls @Groceries'
+alias tdp='todo.sh pri'
+alias tdls='todo.sh ls'
+alias tdlc='todo.sh listcon'
+alias tdlp='todo.sh listpri'
 #===============================================================================}}}
-tga() { todo.sh add "@Groceries $*" }
+tdga() { todo.sh add "@Groceries $*" }
 # Dictionary functions ========================================================={{{
 #===============================================================================
 # Dictionnary of computing (foldoc)
