@@ -1,0 +1,21 @@
+Weekend Plan for {saturday}
+==============================
+:date: {today}
+
+Goals
+------
+
+Commitments
+------------
+
+Options
+--------
+
+Open Projects
+--------------
+
+Other
+------
+
+Waiting
+--------
