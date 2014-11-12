@@ -5,3 +5,4 @@ export PATH=$HOME/.cabal/bin:$PATH
 export HOST=shutupmiles
 
 export HOMEBREW_GITHUB_API_TOKEN=61b5244e6fa04d168dbc71a4f70921bae8fd8741
+export ANDROID_HOME=/usr/local/opt/android-sdk
