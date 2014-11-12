@@ -13,3 +13,10 @@ dash() { open dash://`join ' ' $@` }
 alias bi='brew install '
 alias bs='brew search '
 alias bu='brew uninstall '
+
+alias mn='minion'
+alias mnn='minion note'
+alias mno='minion open'
+alias mnr='minion remind'
+alias mns='minion summary'
+alias mnf='minion favorites'
