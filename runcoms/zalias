@@ -38,6 +38,8 @@ alias cgrep='grep --color=auto'
 # quit and write quite
 alias :q='exit'
 alias :wq='exit'
+# Stop asking me if I want to rm things
+alias rm='rm -f'
 # List broken symlinks
 alias broken='find . -type l ! -exec test -e {} \; -print'
 # Makes zsh so that it can be used as such: `mmv *.jpeg *.jpg
@@ -205,8 +207,8 @@ alias tdp='todo.sh pri'
 alias tdls='todo.sh ls'
 alias tdlc='todo.sh listcon'
 alias tdlp='todo.sh listpri'
-#===============================================================================}}}
 tdga() { todo.sh add "@Groceries $*" }
+#===============================================================================}}}
 # Dictionary functions ========================================================={{{
 #===============================================================================
 # Dictionnary of computing (foldoc)
